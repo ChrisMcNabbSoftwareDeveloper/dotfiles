@@ -33,7 +33,8 @@ function minutes_since_last_commit {
 }
 
 grb_git_prompt() {
-    local g="$(__gitdir)"
+  sha1=$(git rev-parse --short --quiet HEAD)
+  local g="$(__gitdir)"
     if [ -n "$g" ]; then
         local MINUTES_SINCE_LAST_COMMIT=`minutes_since_last_commit`
         if [ "$MINUTES_SINCE_LAST_COMMIT" -gt 30 ]; then
@@ -45,7 +46,7 @@ grb_git_prompt() {
         fi
         local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m${NORMAL}"
         # The __git_ps1 function inserts the current git branch where %s is
-        local GIT_PROMPT=`__git_ps1 "(%s|${SINCE_LAST_COMMIT})"`
+        local GIT_PROMPT=`__git_ps1 "(%s|$sha1|${SINCE_LAST_COMMIT})"`
         echo ${GIT_PROMPT}
     fi
 }
@@ -54,5 +55,12 @@ source ~/bin/git-completion.bash
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-#PS1="\w \$(grb_git_prompt) \$ "
-PS1="\[\033[36m\]:\w\[\033[0m\] \$(grb_git_prompt) \$ "
+dir_w_color="\[\033[36m\]:\w\[\033[0m\] "
+
+# here's the final prompt
+PS1="$dir_w_color\$(grb_git_prompt) \$ "
+
+
+
+
+
