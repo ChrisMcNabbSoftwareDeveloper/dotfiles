@@ -49,26 +49,10 @@ grb_git_prompt() {
         echo ${GIT_PROMPT}
     fi
 }
-#PS1="\h:\W\$(grb_git_prompt) \u\$ "
-
-#activate_virtualenv() {
-#    if [ -f env/bin/activate ]; then . env/bin/activate;
-#    elif [ -f ../env/bin/activate ]; then . ../env/bin/activate;
-#    elif [ -f ../../env/bin/activate ]; then . ../../env/bin/activate;
-#    elif [ -f ../../../env/bin/activate ]; then . ../../../env/bin/activate;
-#    fi
-#}
-
-python_module_dir () {
-    echo "$(python -c "import os.path as _, ${1}; \
-        print _.dirname(_.realpath(${1}.__file__[:-1]))"
-        )"
-}
 
 source ~/bin/git-completion.bash
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-#PS1="[\d \t \u@\h:\w ] $ "
-
-PS1="\h:\W\$(grb_git_prompt) \u\$ "
+#PS1="\w \$(grb_git_prompt) \$ "
+PS1="\[\033[36m\]:\w\[\033[0m\] \$(grb_git_prompt) \$ "
