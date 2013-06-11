@@ -1,10 +1,10 @@
 .bash_profile gets called first from bash preferences when a new terminal is started.
 
-.bashrc is called from .bash_profile.
+.bash_profile calls .bashrc 
 
-.git-completion.bash is used by .bashrc
+.bashrc depends on .git-completion.bash 
 
-.bash-colors.sh is used by .bashrc.
+.bashrc depends on .bash-colors.sh 
 
 
 
