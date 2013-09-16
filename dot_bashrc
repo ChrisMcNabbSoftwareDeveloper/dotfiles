@@ -33,22 +33,25 @@ function minutes_since_last_commit {
 }
 
 grb_git_prompt() {
-  sha1=$(git rev-parse --short --quiet HEAD)
-  local g="$(__gitdir)"
-    if [ -n "$g" ]; then
-        local MINUTES_SINCE_LAST_COMMIT=`minutes_since_last_commit`
-        if [ "$MINUTES_SINCE_LAST_COMMIT" -gt 30 ]; then
-            local COLOR=${RED}
-        elif [ "$MINUTES_SINCE_LAST_COMMIT" -gt 10 ]; then
-            local COLOR=${YELLOW}
-        else
-            local COLOR=${GREEN}
-        fi
-        local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m${NORMAL}"
-        # The __git_ps1 function inserts the current git branch where %s is
-        local GIT_PROMPT=`__git_ps1 "(\033[31m%s\033[0m|$sha1|${SINCE_LAST_COMMIT})"`
-        echo ${GIT_PROMPT}
-    fi
+  if [ -d ".git" ]
+  then
+    sha1=$(git rev-parse --short --quiet HEAD)
+    local g="$(__gitdir)"
+      if [ -n "$g" ]; then
+          local MINUTES_SINCE_LAST_COMMIT=`minutes_since_last_commit`
+          if [ "$MINUTES_SINCE_LAST_COMMIT" -gt 30 ]; then
+              local COLOR=${RED}
+          elif [ "$MINUTES_SINCE_LAST_COMMIT" -gt 10 ]; then
+              local COLOR=${YELLOW}
+          else
+              local COLOR=${GREEN}
+          fi
+          local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m${NORMAL}"
+          # The __git_ps1 function inserts the current git branch where %s is
+          local GIT_PROMPT=`__git_ps1 "(\033[31m%s\033[0m|$sha1|${SINCE_LAST_COMMIT})"`
+          echo ${GIT_PROMPT}
+      fi
+  fi
 }
 
 source ~/bin/git-completion.bash

@@ -5,6 +5,13 @@ export PATH="/usr/local/mysql/bin:$PATH"
 export CLASSPATH="/var/mssqlserverjdbc/Driver/sqljdbc_4.0/enu/sqljdbc4.jar"
 ls
 
+export INFOCON_DEV="/Users/christopher.mcnabb/Developer/git/info_concierge/"
+export INFOCON_PROD="/Users/christopher.mcnabb/Developer/PRODUCTION/info_concierge/"
+
+function tw () {
+    echo -ne "\033]0;"$@"\007"
+  }
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
