@@ -54,17 +54,27 @@ grb_git_prompt() {
   fi
 }
 
-source ~/bin/git-completion.bash
+function rvm_version {
+  local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
+  if [ "$gemset" != "" ]
+  then
+    gemset="@$gemset)"
+  else
+    gemset=")"
+  fi
+  local version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}')
+  [ "$version" != "" ] && version="($version"
+  local full="$version$gemset"
+  [ "$full" != "" ] && echo "$full "
+}
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source ~/bin/git-completion.bash
 
 dir_w_color="\[\033[36m\]:\w\[\033[0m\] "
 git_prompt_w_color="\$(grb_git_prompt) "
+rvm_version_w_color="\$(rvm_version)"
 
 # here's the final prompt
-PS1="$dir_w_color$git_prompt_w_color\$ "
+PS1="$dir_w_color$git_prompt_w_color$rvm_version_w_color\$ "
 
-
-
-
-
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
