@@ -3,21 +3,33 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
 
 export CLASSPATH="/var/mssqlserverjdbc/Driver/sqljdbc_4.0/enu/sqljdbc4.jar"
-ls
 
 export INFOCON_DEV="/Users/christopher.mcnabb/Developer/git/info_concierge/"
-export INFOCON_PROD="/Users/christopher.mcnabb/Developer/PRODUCTION/info_concierge/"
+export INFOCON_PROD="/Users/christopher.mcnabb/Developer/PRODUCTION/info_concierge/current/"
+export INFOCON_12_DEV="/Users/christopher.mcnabb/Developer/git/info_concierge_v1.2/"
+export INFOCON_12_PROD="/Users/christopher.mcnabb/Developer/PRODUCTION/info_concierge_v1.2/current/"
+export XFINITY_SWEEPSTAKES_DEV="/Users/christopher.mcnabb/Developer/git/xfinity_sweepstakes/"
+export TARGET_500_DEV="/Users/christopher.mcnabb/Developer/git/freebiz_target_500"
+# export JAVA_HOME=`/usr/libexec/java_home - v1.7`
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_11.jdk/Contents/Home/"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
+export PATH=$JAVA_HOME/bin:$PATH
+export PGHOST=localhost
+
+export smtp_comcast_password="FrogLegs123890"
+
+export STOMP_USER="admin"
+export STOMP_PASSWORD="password"
+export STOMP_HOST="127.0.0.1"
+export STOMP_PORT="61613"
 
 function tw () {
     echo -ne "\033]0;"$@"\007"
   }
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # source ~/.rvm/contrib/ps1_functions  # <-- make custom changes inside here!
 # ps1_set $
 
 source ~/.bashrc  #<- new!
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
